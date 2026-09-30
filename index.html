@@ -140,6 +140,7 @@ button:hover {
     white-space: pre-line;
 }
 
+/* MOBILE */
 @media (max-width: 600px) {
 
     .resume {
@@ -161,6 +162,7 @@ button:hover {
     }
 }
 
+/* PRINT */
 @media print {
 
     body {
@@ -210,7 +212,7 @@ button:hover {
 <label>Address</label>
 <input id="address" type="text" placeholder="Your address">
 
-<!-- PHOTO UPLOAD -->
+<!-- PHOTO -->
 <div class="photo-upload">
 
 <label>Profile Photo</label>
@@ -237,4 +239,214 @@ button:hover {
 
 <label>Education</label>
 <textarea
-    id="education
+    id="education"
+    placeholder="Example:
+Plus Two - Computer Science
+SSLC - 2024">
+</textarea>
+
+<label>Skills</label>
+<textarea
+    id="skills"
+    placeholder="Example:
+HTML
+CSS
+JavaScript
+Python">
+</textarea>
+
+<label>Experience</label>
+<textarea
+    id="experience"
+    placeholder="Write your experience">
+</textarea>
+
+<label>Projects</label>
+<textarea
+    id="projects"
+    placeholder="Write your projects">
+</textarea>
+
+<button onclick="generateResume()">
+Generate Resume
+</button>
+
+<button class="print-btn" onclick="window.print()">
+Print / Save PDF
+</button>
+
+</div>
+
+
+<!-- RESUME PREVIEW -->
+
+<div class="resume" id="resume">
+
+<div class="header">
+
+<div>
+
+<h2 id="rName">Your Name</h2>
+
+<p id="rJob">Job Title</p>
+
+<p id="rEmail">Email</p>
+
+<p id="rPhone">Phone</p>
+
+<p id="rAddress">Address</p>
+
+</div>
+
+<img
+    id="resumePhoto"
+    class="resume-photo"
+    alt="Profile Photo"
+>
+
+</div>
+
+
+<div class="section">
+
+<h3>Career Objective</h3>
+
+<p id="rObjective">
+Your career objective will appear here.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>Education</h3>
+
+<p id="rEducation">
+Your education details will appear here.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>Skills</h3>
+
+<p id="rSkills">
+Your skills will appear here.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>Experience</h3>
+
+<p id="rExperience">
+Your experience will appear here.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>Projects</h3>
+
+<p id="rProjects">
+Your projects will appear here.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* PHOTO UPLOAD + PREVIEW */
+
+document.getElementById("photo").addEventListener(
+    "change",
+    function(event) {
+
+        const file = event.target.files[0];
+
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+
+                document.getElementById("photoPreview").src =
+                    e.target.result;
+
+                document.getElementById("photoPreview").style.display =
+                    "block";
+
+                document.getElementById("resumePhoto").src =
+                    e.target.result;
+
+                document.getElementById("resumePhoto").style.display =
+                    "block";
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+);
+
+
+/* GENERATE RESUME */
+
+function generateResume() {
+
+    document.getElementById("rName").innerText =
+        document.getElementById("name").value ||
+        "Your Name";
+
+    document.getElementById("rJob").innerText =
+        document.getElementById("job").value ||
+        "Job Title";
+
+    document.getElementById("rEmail").innerText =
+        document.getElementById("email").value ||
+        "Email";
+
+    document.getElementById("rPhone").innerText =
+        document.getElementById("phone").value ||
+        "Phone";
+
+    document.getElementById("rAddress").innerText =
+        document.getElementById("address").value ||
+        "Address";
+
+    document.getElementById("rObjective").innerText =
+        document.getElementById("objective").value ||
+        "Your career objective will appear here.";
+
+    document.getElementById("rEducation").innerText =
+        document.getElementById("education").value ||
+        "Your education details will appear here.";
+
+    document.getElementById("rSkills").innerText =
+        document.getElementById("skills").value ||
+        "Your skills will appear here.";
+
+    document.getElementById("rExperience").innerText =
+        document.getElementById("experience").value ||
+        "Your experience will appear here.";
+
+    document.getElementById("rProjects").innerText =
+        document.getElementById("projects").value ||
+        "Your projects will appear here.";
+}
+
+</script>
+
+</body>
+</html>
